@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="/users/style.css"> <!-- Link to the single CSS file -->
+</head>
+<body>
+    <div class="container">
+        <div id="error-message" class="error-message" style="display: none;"></div> 
+
+        <form id="registerForm" class="form" method="post">
+            <h2>Register</h2>
+            <div class="form-group">
+                <label for="registerEmail">Email</label>
+                <input type="email" id="registerEmail" placeholder="Enter your email" required maxlength="50">
+            </div>
+            <div class="form-group">
+                <label for="registerPassword">Password</label>
+                <input type="password" id="registerPassword" placeholder="Create a password" required maxlength="255">
+            </div>
+            <button type="submit" class="btn">Register</button>
+            <p class="switch-form">Already have an account? <a href="/login">Login</a></p>
+        </form>
+    </div>
+    <script>
+//register
+const registerForm = document.getElementById('registerForm')
+const registerEmail = document.getElementById('registerEmail')
+const registerPassword = document.getElementById('registerPassword')
+const errormessage = document.getElementById('error-message')
+
+
+const redirect = new URLSearchParams(window.location.search).get("redirect")
+
+registerForm.addEventListener('submit',async (e) => {
+    e.preventDefault()
+    const body = {
+        email : registerEmail.value,
+        password : registerPassword.value
+    }
+
+    const response = await fetch('/api/auth/register',{
+        method : 'POST',
+        headers : {"Content-Type": "application/json"},
+        body : JSON.stringify(body)
+    })
+
+    if(redirect){
+        window.location.href = redirect
+        return
+    }
+
+    if(response.redirected){
+        window.location.href = response.url
+        return
+    }else{
+        const data = await response.json()
+        errormessage.style.display = "block"
+        errormessage.innerHTML = data.message
+    }
+})
+//register
+
+    </script>
+</body>
+</html>

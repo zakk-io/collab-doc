@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Documents</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+</head>
+<body class="bg-gray-50">
+    <div class="container mx-auto p-4">
+        <header class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-800">Documents</h1>
+        </header>
+
+        <!-- add document Button -->
+        <button class="btn btn-primary add-document-btn" id="add-document-btn">
+          <i class="bi bi-plus-lg"></i> add document
+        </button>
+
+        <div class="recent-label">Recent documents</div>
+        
+        <div class="row g-4" id="document-row">
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const FindDocuments = async () => {
+            const response = await fetch(`/api/documents`)
+            const data = await response.json()
+            const document_row = document.getElementById("document-row")
+            
+            data.documents.forEach(document => {
+                const holder = `
+                    <div class="col-md-3 col-sm-6">
+                        <a href="/documents/?document_id=${document.document_id}" 
+                           class="text-decoration-none">
+                            <div class="document-card bg-white shadow-sm hover:shadow-md">
+                                <div class="document-preview">
+                                    ${document.document_name}
+                                </div>
+                                <div class="document-info">
+                                    <div class="document-title">${document.document_name}</div>
+                                    <div class="document-meta">
+                                        ${document.document_creator.email}
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                `
+                document_row.innerHTML += holder
+            });
+        }
+        
+        const add_document_btn = document.getElementById("add-document-btn")
+        add_document_btn.addEventListener("click", async() => {
+             location.href = "/documents/"
+        })
+
+        FindDocuments()
+    </script>
+</body>
+</html>
