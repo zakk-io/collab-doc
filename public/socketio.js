@@ -1,4 +1,4 @@
-const socket = io("http://127.0.0.1:2000")
+const socket = io("https://collab-doc-x5xr.onrender.com")
 
 
 socket.emit("join_document",documentId)
