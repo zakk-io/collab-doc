@@ -1,4 +1,5 @@
-# CollabDoc - Real-time Document Collaboration Platform
+# CollabDoc - Real-time Document Collaboration Platform 
+https://collab-doc-x5xr.onrender.com
 
 CollabDoc is a full-stack web application that enables real-time document collaboration with role-based access control. Built with Node.js and Express, it provides a secure and intuitive platform for teams to create, edit, and manage documents together.
 
@@ -19,9 +20,11 @@ as document creator you can give users different roles such as editor and viewer
 
 
 ### Recent Documents
+https://collab-doc-x5xr.onrender.com
 ![Editor Interface](/screenshots/list_documents.png)
 
 ### User Management
+https://collab-doc-x5xr.onrender.com/register
 ![User Dashboard](/screenshots/register.png)
 
 
