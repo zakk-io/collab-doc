@@ -257,7 +257,7 @@ const SendInvitation = async (req,res) => {
         });
 
 
-        const InvitationLink = `http://127.0.0.1:2000/api/documents/join/${document_id}/?token=${token}`
+        const InvitationLink = `https://collab-doc-x5xr.onrender.com/api/documents/join/${document_id}/?token=${token}`
         const mailOptions = {
             from: 'mozakk.io@gmail.com',
             to: req.body.email,
