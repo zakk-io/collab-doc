@@ -19,7 +19,7 @@ const server = http.createServer(app)//create http server and pass express to ha
 mongoose.connect(process.env.MONGO_URI).then(() => console.log('mongodb connected!'));
 const io = new Server(server, {
     cors: {
-        origin: "https://collab-doc-x5xr.onrender.com",  
+        origin: "http://127.0.0.1:2000",  
         methods: ["GET", "POST", "OPTIONS", "PUT", "DELETE", "PATCH"]
     }
 });
